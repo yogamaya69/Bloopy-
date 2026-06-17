@@ -31,7 +31,6 @@
                         body: ['"Nunito"', 'sans-serif'],
                     },
                     backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                         'gradient-bloop': 'linear-gradient(135deg, #48d1cc 0%, #9370db 100%)',
                     },
                     animation: {
@@ -55,22 +54,22 @@
     </script>
     
     <style>
-        /* Estilos adicionais e scrollbar customizada */
+        /* Reset para forçar largura total e anular temas do GitHub Pages */
         html, body {
-            width: 100%;
-            max-width: 100vw;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
+            width: 100% !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #ffffff; /* Fundo limpo, sem bolhas */
         }
 
-        body {
-            background-color: #e0f7fa;
-            background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 10%, transparent 10.1%),
-                              radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.3) 10%, transparent 10.1%),
-                              radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.3) 10%, transparent 10.1%);
-            background-size: 60px 60px, 100px 100px, 80px 80px;
-            background-attachment: fixed;
+        /* Anula containers padrões do GitHub Pages */
+        .wrapper, .container, .main-content {
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
         }
 
         .hide-scrollbar::-webkit-scrollbar {
@@ -119,7 +118,8 @@
         }
 
         section {
-            max-width: 100vw;
+            width: 100vw !important;
+            max-width: 100vw !important;
             overflow-x: hidden;
         }
     </style>
@@ -132,7 +132,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <!-- Logo na barra de navegação (corrigida: mix-blend-multiply) -->
+                    <!-- Logo na barra de navegação -->
                     <img src="logo.svg" alt="Bloopy" class="h-10 w-auto mix-blend-multiply" onerror="this.onerror=null; this.src='https://placehold.co/120x40/transparent/ffffff?text=Bloopy&font=Montserrat'">
                 </div>
                 <div class="hidden md:flex space-x-8">

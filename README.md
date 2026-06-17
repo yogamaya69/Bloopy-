@@ -198,7 +198,9 @@
                 <div class="lg:w-1/2 relative flex justify-center mt-12 lg:mt-0 w-full">
                     <!-- Simulação do Dumpling Principal -->
                     <div class="relative w-64 h-64 md:w-80 md:h-80 animate-wiggle z-20">
-                        <img src="01.png" alt="Bloopy Mystery Dumpling" onerror="this.onerror=null; this.src='https://placehold.co/400x400/ffe4e1/ff9800?text=01.png+não+encontrada'" class="w-full h-full object-contain mix-blend-multiply z-20 relative">
+                        <!-- O mix-blend-multiply foi removido e um drop-shadow foi adicionado. 
+                             Lembre-se de usar uma imagem 01.png com fundo transparente! -->
+                        <img src="01.png" alt="Bloopy Mystery Dumpling" onerror="this.onerror=null; this.src='https://placehold.co/400x400/transparent/ff9800?text=01.png+não+encontrada'" class="w-full h-full object-contain z-20 relative drop-shadow-2xl">
                         
                         <!-- Ponto de interrogação flutuante -->
                         <div class="absolute -top-5 -right-5 font-display text-5xl text-white text-shadow-md animate-bounce-slow transform rotate-12 z-30">
@@ -438,7 +440,7 @@
     <section id="colecione" class="py-20 bg-[#e0f7fa]">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16">
-                <!-- Logo na seção Colecione (corrigida: mix-blend-multiply) -->
+                <!-- Logo na seção Colecione -->
                 <img src="logo.svg" alt="Bloopy Logo" class="mx-auto h-16 object-contain mb-2 mix-blend-multiply" onerror="this.onerror=null; this.src='https://placehold.co/200x80/transparent/2c3e50?text=Bloopy&font=Montserrat'">
                 <h2 class="font-display text-4xl md:text-5xl text-bloopy-dark mb-2">Colecione Todos!</h2>
                 <p class="text-xl font-bold text-gray-600">Encontre o Dumpling Escondido!</p>
@@ -538,7 +540,7 @@
     <footer class="bg-bloopy-dark text-white py-10">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
-                <!-- Logo no Rodapé (fundo branco removido) -->
+                <!-- Logo no Rodapé -->
                 <img src="logo.svg" alt="Bloopy" class="h-16 w-auto mb-4 mx-auto md:mx-0" onerror="this.onerror=null; this.src='https://placehold.co/150x50/transparent/ffeb3b?text=Bloopy&font=Montserrat'">
                 <p class="text-gray-400 font-bold mb-4">Fun Squishy. Fabricando sorrisos e diversão misteriosa.</p>
                 <div class="flex space-x-4 justify-center md:justify-start">
@@ -573,7 +575,7 @@
         </div>
     </footer>
 
-    <!-- Caixa de Mensagem Customizada (Substitui alert) -->
+    <!-- Caixa de Mensagem Customizada -->
     <div id="messageBox" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 bg-white border-l-4 border-bloopy-green rounded shadow-lg p-4 transition-all duration-300 z-50 flex items-center">
         <i class="fas fa-check-circle text-bloopy-green text-2xl mr-3"></i>
         <p id="messageText" class="font-bold text-gray-800"></p>
@@ -581,7 +583,7 @@
 
     <!-- Scripts -->
     <script>
-        // Função para mostrar mensagens (evitando alert)
+        // Função para mostrar mensagens 
         function showMessage(text) {
             const msgBox = document.getElementById('messageBox');
             const msgText = document.getElementById('messageText');

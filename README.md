@@ -200,8 +200,8 @@
                 <div class="lg:w-1/2 relative flex justify-center mt-10 lg:mt-0">
                     <!-- Simulação do Dumpling Principal (baseado na caixa) -->
                     <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] animate-wiggle z-20">
-                        <!-- Imagem do personagem do repositório -->
-                        <img src="01.webp" alt="Bloopy Mystery Dumpling" onerror="this.onerror=null; this.src='https://placehold.co/400x400/ffe4e1/ff9800?text=01.webp+não+encontrada'" class="w-full h-full object-contain drop-shadow-2xl z-20 relative">
+                        <!-- Imagem do personagem do repositório (com fundo removido via CSS mix-blend-multiply) -->
+                        <img src="01.png" alt="Bloopy Mystery Dumpling" onerror="this.onerror=null; this.src='https://placehold.co/400x400/ffe4e1/ff9800?text=01.png+não+encontrada'" class="w-full h-full object-contain mix-blend-multiply z-20 relative">
                         
                         <!-- Ponto de interrogação flutuante -->
                         <div class="absolute -top-10 -right-5 font-display text-6xl text-white text-shadow-md animate-bounce-slow transform rotate-12 z-30">

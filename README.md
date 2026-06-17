@@ -56,6 +56,14 @@
     
     <style>
         /* Estilos adicionais e scrollbar customizada */
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: #e0f7fa;
             background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 10%, transparent 10.1%),
@@ -63,9 +71,6 @@
                               radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.3) 10%, transparent 10.1%);
             background-size: 60px 60px, 100px 100px, 80px 80px;
             background-attachment: fixed;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
         }
 
         .hide-scrollbar::-webkit-scrollbar {
@@ -112,6 +117,11 @@
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
+
+        section {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
     </style>
 </head>
 
@@ -122,8 +132,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <!-- Logo na barra de navegação -->
-                    <img src="logo.svg" alt="Bloopy" class="h-10 w-auto drop-shadow-md" onerror="this.onerror=null; this.src='https://placehold.co/120x40/transparent/ffffff?text=Bloopy&font=Montserrat'">
+                    <!-- Logo na barra de navegação (corrigida: mix-blend-multiply) -->
+                    <img src="logo.svg" alt="Bloopy" class="h-10 w-auto mix-blend-multiply" onerror="this.onerror=null; this.src='https://placehold.co/120x40/transparent/ffffff?text=Bloopy&font=Montserrat'">
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="#home" class="text-white font-bold text-lg hover:text-bloopy-yellow transition-colors drop-shadow-md">Home</a>
@@ -157,7 +167,7 @@
     </nav>
 
     <!-- Seção Hero -->
-    <section id="home" class="relative pt-32 pb-40 md:pt-40 md:pb-48 overflow-hidden bg-bloopy-blue w-full">
+    <section id="home" class="relative pt-32 pb-40 md:pt-40 md:pb-48 overflow-hidden bg-bloopy-blue w-full min-w-0">
         <!-- Elementos de fundo decorativos -->
         <div class="absolute top-20 left-10 w-32 h-32 bg-bloopy-pink rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
         <div class="absolute bottom-40 right-10 w-48 h-48 bg-bloopy-yellow rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
@@ -443,8 +453,8 @@
     <section id="colecione" class="py-20 bg-[#e0f7fa]">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16">
-                <!-- Logo na seção Colecione -->
-                <img src="logo.svg" alt="Bloopy Logo" class="mx-auto h-16 object-contain mb-2 drop-shadow-md" onerror="this.onerror=null; this.src='https://placehold.co/200x80/transparent/2c3e50?text=Bloopy&font=Montserrat'">
+                <!-- Logo na seção Colecione (corrigida: mix-blend-multiply) -->
+                <img src="logo.svg" alt="Bloopy Logo" class="mx-auto h-16 object-contain mb-2 mix-blend-multiply" onerror="this.onerror=null; this.src='https://placehold.co/200x80/transparent/2c3e50?text=Bloopy&font=Montserrat'">
                 <h2 class="font-display text-4xl md:text-5xl text-bloopy-dark mb-2">Colecione Todos!</h2>
                 <p class="text-xl font-bold text-gray-600">Encontre o Dumpling Escondido!</p>
             </div>
@@ -543,8 +553,8 @@
     <footer class="bg-bloopy-dark text-white py-10">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
-                <!-- Logo no Rodapé -->
-                <img src="logo.svg" alt="Bloopy" class="h-12 w-auto mb-4 mx-auto md:mx-0 drop-shadow-md" onerror="this.onerror=null; this.src='https://placehold.co/150x50/transparent/ffeb3b?text=Bloopy&font=Montserrat'">
+                <!-- Logo no Rodapé (modificado para parecer um adesivo pro fundo escuro) -->
+                <img src="logo.svg" alt="Bloopy" class="h-12 w-auto mb-4 mx-auto md:mx-0 bg-white px-3 py-1 rounded-xl shadow-sm" onerror="this.onerror=null; this.src='https://placehold.co/150x50/transparent/ffeb3b?text=Bloopy&font=Montserrat'">
                 <p class="text-gray-400 font-bold mb-4">Fun Squishy. Fabricando sorrisos e diversão misteriosa.</p>
                 <div class="flex space-x-4 justify-center md:justify-start">
                     <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-bloopy-yellow hover:text-bloopy-dark transition-colors"><i class="fab fa-instagram"></i></a>

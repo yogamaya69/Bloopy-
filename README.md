@@ -62,11 +62,12 @@
                               radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.3) 10%, transparent 10.1%),
                               radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.3) 10%, transparent 10.1%);
             background-size: 60px 60px, 100px 100px, 80px 80px;
-            background-attachment: fixed; /* Adicionado para não desconfigurar no scroll */
+            background-attachment: fixed;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Ocultar barra de rolagem padrão para o carrossel, mas permitir rolagem */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -95,7 +96,6 @@
             -webkit-text-stroke: 2px white;
         }
 
-        /* Estilo para vídeos curtos simulados */
         .tiktok-frame {
             border-radius: 1rem;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
@@ -118,7 +118,7 @@
 <body class="font-body text-bloopy-dark antialiased">
 
     <!-- Navegação -->
-    <nav class="fixed w-full z-50 transition-all duration-300 py-2" id="navbar">
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-2" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
@@ -144,7 +144,7 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu (hidden by default) -->
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-bloopy-blue bg-opacity-95 shadow-lg">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
                 <a href="#home" class="block px-3 py-2 text-white font-bold hover:bg-bloopy-purple rounded-md">Home</a>
@@ -156,77 +156,76 @@
         </div>
     </nav>
 
-    <!-- Seção Hero: Fluxo ajustado para não transbordar -->
-    <section id="home" class="relative pt-36 pb-48 md:pt-48 md:pb-64 overflow-hidden bg-bloopy-blue">
-        <!-- Elementos de fundo decorativos inspirados na caixa -->
+    <!-- Seção Hero -->
+    <section id="home" class="relative pt-32 pb-40 md:pt-40 md:pb-48 overflow-hidden bg-bloopy-blue w-full">
+        <!-- Elementos de fundo decorativos -->
         <div class="absolute top-20 left-10 w-32 h-32 bg-bloopy-pink rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
         <div class="absolute bottom-40 right-10 w-48 h-48 bg-bloopy-yellow rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
         <div class="absolute top-1/2 right-1/4 w-40 h-40 bg-bloopy-purple rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 1s;"></div>
         <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-bloopy-green rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 3s;"></div>
 
         <!-- Container principal -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-10">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
                 
                 <!-- Texto Hero -->
-                <div class="lg:w-1/2 text-center lg:text-left">
+                <div class="lg:w-1/2 text-center lg:text-left w-full">
                     <div class="inline-block bg-bloopy-yellow text-bloopy-dark font-bold px-4 py-1 rounded-full mb-4 shadow-md transform -rotate-2">
                         <i class="fas fa-star text-orange-500 mr-2"></i>Fun Squishy!
                     </div>
-                    <h1 class="font-display text-5xl md:text-7xl lg:text-8xl text-white text-shadow-md mb-2 tracking-wide text-outline">
+                    <h1 class="font-display text-5xl md:text-6xl lg:text-7xl text-white text-shadow-md mb-2 tracking-wide text-outline leading-tight">
                         MYSTERY
                     </h1>
-                    <h1 class="font-display text-4xl md:text-6xl text-bloopy-yellow text-shadow-md mb-6 transform -rotate-3 inline-block">
+                    <h1 class="font-display text-4xl md:text-5xl text-bloopy-yellow text-shadow-md mb-6 transform -rotate-3 inline-block">
                         DUMPLING
                     </h1>
                     
-                    <p class="text-xl md:text-2xl text-white font-bold mb-8 drop-shadow-lg max-w-lg mx-auto lg:mx-0">
+                    <p class="text-xl text-white font-bold mb-8 drop-shadow-lg max-w-lg mx-auto lg:mx-0">
                         Qual será a sua cor?? Aperte, estique e descubra o squishy mais divertido do momento!
                     </p>
                     
                     <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#comprar" class="bg-white text-bloopy-purple font-display text-xl py-4 px-8 rounded-full shadow-xl hover:scale-105 hover:bg-bloopy-yellow hover:text-bloopy-dark transition-all flex items-center justify-center group border-4 border-bloopy-purple">
+                        <a href="#comprar" class="bg-white text-bloopy-purple font-display text-lg py-3 px-8 rounded-full shadow-xl hover:scale-105 hover:bg-bloopy-yellow hover:text-bloopy-dark transition-all flex items-center justify-center group border-4 border-bloopy-purple">
                             <i class="fas fa-shopping-cart mr-2 group-hover:animate-bounce"></i> Garantir o Meu
                         </a>
-                        <a href="#viral" class="bg-transparent border-4 border-white text-white font-display text-xl py-4 px-8 rounded-full shadow-lg hover:bg-white hover:text-bloopy-blue transition-all flex items-center justify-center">
+                        <a href="#viral" class="bg-transparent border-4 border-white text-white font-display text-lg py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-bloopy-blue transition-all flex items-center justify-center">
                             <i class="fas fa-play mr-2"></i> Ver Vídeos
                         </a>
                     </div>
                     
                     <div class="mt-8 flex items-center justify-center lg:justify-start space-x-2">
                         <span class="bg-bloopy-green text-white font-bold px-3 py-1 rounded-full text-sm shadow-sm border-2 border-white">+3 ANOS</span>
-                        <span class="text-white font-bold drop-shadow-md">Contém 12 Unidades na caixa</span>
+                        <span class="text-white font-bold text-sm drop-shadow-md">Contém 12 Unidades</span>
                     </div>
                 </div>
 
                 <!-- Imagem/Gráfico Hero -->
-                <div class="lg:w-1/2 relative flex justify-center mt-12 lg:mt-0">
-                    <!-- Simulação do Dumpling Principal (baseado na caixa) -->
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] animate-wiggle z-20">
-                        <!-- Imagem do personagem do repositório (com fundo removido via CSS mix-blend-multiply) -->
+                <div class="lg:w-1/2 relative flex justify-center mt-12 lg:mt-0 w-full">
+                    <!-- Simulação do Dumpling Principal -->
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 animate-wiggle z-20">
                         <img src="01.png" alt="Bloopy Mystery Dumpling" onerror="this.onerror=null; this.src='https://placehold.co/400x400/ffe4e1/ff9800?text=01.png+não+encontrada'" class="w-full h-full object-contain mix-blend-multiply z-20 relative">
                         
                         <!-- Ponto de interrogação flutuante -->
-                        <div class="absolute -top-10 -right-5 font-display text-6xl text-white text-shadow-md animate-bounce-slow transform rotate-12 z-30">
+                        <div class="absolute -top-5 -right-5 font-display text-5xl text-white text-shadow-md animate-bounce-slow transform rotate-12 z-30">
                             ?!
                         </div>
                     </div>
                     
                     <!-- Dumplings menores ao redor -->
-                    <div class="absolute bottom-10 -left-10 w-24 h-24 bg-bloopy-yellow rounded-full shadow-lg border-4 border-white animate-float z-10 flex items-center justify-center">
-                         <div class="flex space-x-2 mb-2"><div class="w-2 h-2 bg-gray-800 rounded-full"></div><div class="w-2 h-2 bg-gray-800 rounded-full"></div></div>
+                    <div class="absolute bottom-5 -left-5 w-20 h-20 bg-bloopy-yellow rounded-full shadow-lg border-4 border-white animate-float z-10 flex items-center justify-center">
+                         <div class="flex space-x-2 mb-1"><div class="w-2 h-2 bg-gray-800 rounded-full"></div><div class="w-2 h-2 bg-gray-800 rounded-full"></div></div>
                     </div>
-                    <div class="absolute top-20 -right-10 w-20 h-20 bg-bloopy-green rounded-full shadow-lg border-4 border-white animate-float z-10 flex items-center justify-center" style="animation-delay: 1.5s;">
-                         <div class="flex space-x-2 mb-2"><div class="w-2 h-2 bg-gray-800 rounded-full"></div><div class="w-2 h-2 bg-gray-800 rounded-full"></div></div>
+                    <div class="absolute top-10 -right-5 w-16 h-16 bg-bloopy-green rounded-full shadow-lg border-4 border-white animate-float z-10 flex items-center justify-center" style="animation-delay: 1.5s;">
+                         <div class="flex space-x-1.5 mb-1"><div class="w-1.5 h-1.5 bg-gray-800 rounded-full"></div><div class="w-1.5 h-1.5 bg-gray-800 rounded-full"></div></div>
                     </div>
-                    <div class="absolute -bottom-5 right-10 w-28 h-28 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full shadow-lg border-4 border-white animate-float z-30 flex items-center justify-center" style="animation-delay: 0.5s;">
-                         <div class="flex space-x-3 mb-2"><div class="w-2.5 h-2.5 bg-white rounded-full"></div><div class="w-2.5 h-2.5 bg-white rounded-full"></div></div>
+                    <div class="absolute -bottom-10 right-10 w-24 h-24 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full shadow-lg border-4 border-white animate-float z-30 flex items-center justify-center" style="animation-delay: 0.5s;">
+                         <div class="flex space-x-2 mb-1"><div class="w-2 h-2 bg-white rounded-full"></div><div class="w-2 h-2 bg-white rounded-full"></div></div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Onda separadora na base com translate para alinhar perfeitamente -->
+        <!-- Onda separadora -->
         <div class="absolute bottom-0 left-0 w-full leading-none z-20 transform translate-y-1">
             <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 md:h-32 text-white fill-current block">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,123.63,200.2,112.3Z" opacity=".25"></path>
@@ -244,7 +243,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-10">
-                <!-- Card 1 -->
                 <div class="bg-blue-50 rounded-3xl p-8 text-center shadow-lg transform transition duration-300 hover:-translate-y-2 border-4 border-bloopy-blue blob-shape">
                     <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
                         <i class="fas fa-question text-4xl text-bloopy-blue"></i>
@@ -253,7 +251,6 @@
                     <p class="font-bold text-gray-600">Por fora parece um Dumpling fofinho de massa... mas qual será a cor dele por dentro? É uma surpresa!</p>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="bg-pink-50 rounded-3xl p-8 text-center shadow-lg transform transition duration-300 hover:-translate-y-2 border-4 border-bloopy-pink blob-shape" style="animation-delay: 0.2s;">
                     <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
                         <i class="fas fa-hand-rock text-4xl text-bloopy-pink"></i>
@@ -262,7 +259,6 @@
                     <p class="font-bold text-gray-600">Aperte muito! Ele é super macio, estica e volta ao normal. A sensação tátil é incrível e relaxante.</p>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="bg-yellow-50 rounded-3xl p-8 text-center shadow-lg transform transition duration-300 hover:-translate-y-2 border-4 border-bloopy-yellow blob-shape" style="animation-delay: 0.4s;">
                     <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
                         <i class="fas fa-users text-4xl text-bloopy-orange"></i>
@@ -272,7 +268,6 @@
                 </div>
             </div>
             
-            <!-- Imagens explicativas baseadas na caixa (Aperte) -->
             <div class="mt-20 flex flex-col md:flex-row justify-center items-center gap-8 bg-gray-50 p-8 rounded-[3rem] shadow-inner">
                 <div class="text-center md:text-left md:w-1/2">
                     <h3 class="font-display text-3xl text-bloopy-green mb-4">Como funciona?</h3>
@@ -285,7 +280,6 @@
                     </ul>
                 </div>
                 
-                <!-- Simulação dos ícones "Aperte" da caixa -->
                 <div class="flex gap-4">
                     <div class="relative w-32 h-32 bg-white rounded-full shadow-lg border-4 border-bloopy-yellow flex items-center justify-center">
                         <div class="text-center">
@@ -295,7 +289,6 @@
                     </div>
                     <i class="fas fa-arrow-right text-3xl text-bloopy-blue self-center animate-pulse"></i>
                     <div class="relative w-32 h-32 bg-white rounded-full shadow-lg border-4 border-bloopy-yellow flex items-center justify-center overflow-hidden">
-                        <!-- Simulação do aperto -->
                         <div class="absolute bg-purple-400 w-20 h-20 rounded-full scale-110"></div>
                         <div class="absolute top-0 bottom-0 left-2 w-4 bg-gray-200 opacity-50 transform -skew-x-12"></div>
                         <div class="absolute top-0 bottom-0 right-2 w-4 bg-gray-200 opacity-50 transform skew-x-12"></div>
@@ -307,7 +300,6 @@
     </section>
 
     <section id="viral" class="py-20 bg-gradient-to-b from-bloopy-purple to-bloopy-blue overflow-hidden relative">
-        <!-- Background elements -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20 pointer-events-none">
             <i class="fas fa-heart text-white text-6xl absolute top-10 left-10 transform -rotate-12"></i>
             <i class="fas fa-share text-white text-4xl absolute bottom-20 left-1/4 transform rotate-12"></i>
@@ -324,9 +316,7 @@
                 <p class="text-xl text-white font-bold drop-shadow-md">Veja as reações de quem apertou pela primeira vez!</p>
             </div>
 
-            <!-- Container do Carrossel -->
             <div class="relative">
-                <!-- Botões de navegação (Visíveis em telas maiores) -->
                 <button id="prevBtn" class="hidden md:flex absolute left-[-20px] top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full items-center justify-center shadow-xl text-bloopy-dark z-20 hover:bg-bloopy-yellow transition-colors border-2 border-gray-200">
                     <i class="fas fa-chevron-left text-xl"></i>
                 </button>
@@ -334,48 +324,34 @@
                     <i class="fas fa-chevron-right text-xl"></i>
                 </button>
 
-                <!-- Track do Carrossel (Scroll horizontal) -->
                 <div id="carousel-track" class="carousel-container flex space-x-6 overflow-x-auto py-8 px-4 hide-scrollbar snap-x">
                     
-                    <!-- Vídeo Fake 1 -->
                     <div class="tiktok-frame snap-center group">
-                        <!-- Imagem placeholder representando o thumbnail do video -->
                         <img src="https://placehold.co/300x533/ffb6c1/ffffff?text=Unboxing+Bloopy!" alt="Video Thumbnail" class="w-full h-full object-cover">
-                        <!-- Overlay da interface de short video -->
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
-                        <!-- Play Button (Aparece no hover) -->
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-30">
                             <i class="fas fa-play-circle text-6xl text-white opacity-80"></i>
                         </div>
-                        <!-- UI Elements -->
                         <div class="absolute bottom-4 left-4 right-12 text-white">
                             <p class="font-bold text-sm">@bloopyfan_oficial</p>
                             <p class="text-xs mt-1 font-bold">Qual cor vcs acham que é? 😱 <span class="text-bloopy-yellow">#bloopy #mysterydumpling</span></p>
                         </div>
-                        <!-- Lateral Actions -->
                         <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
                             <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-heart text-white text-xl"></i>
-                                </div>
+                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-white text-xl"></i></div>
                                 <span class="text-white text-xs font-bold">124K</span>
                             </div>
                             <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-comment-dots text-white text-xl"></i>
-                                </div>
+                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-comment-dots text-white text-xl"></i></div>
                                 <span class="text-white text-xs font-bold">1.2K</span>
                             </div>
                             <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-share text-white text-xl"></i>
-                                </div>
+                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-share text-white text-xl"></i></div>
                                 <span class="text-white text-xs font-bold">5K</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Vídeo Fake 2 -->
                     <div class="tiktok-frame snap-center group">
                         <img src="https://placehold.co/300x533/48d1cc/ffffff?text=Olha+essa+Cor!!" alt="Video Thumbnail" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
@@ -388,26 +364,16 @@
                         </div>
                         <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
                             <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-heart text-red-500 text-xl"></i>
-                                </div>
+                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-red-500 text-xl"></i></div>
                                 <span class="text-white text-xs font-bold">342K</span>
                             </div>
                             <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-comment-dots text-white text-xl"></i>
-                                </div>
+                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-comment-dots text-white text-xl"></i></div>
                                 <span class="text-white text-xs font-bold">4.5K</span>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-share text-white text-xl"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Vídeo Fake 3 -->
                     <div class="tiktok-frame snap-center group">
                         <img src="https://placehold.co/300x533/9370db/ffffff?text=ASMR+Squishy" alt="Video Thumbnail" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
@@ -420,25 +386,12 @@
                         </div>
                         <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
                             <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-heart text-white text-xl"></i>
-                                </div>
+                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-white text-xl"></i></div>
                                 <span class="text-white text-xs font-bold">89K</span>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-comment-dots text-white text-xl"></i>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-share text-white text-xl"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Vídeo Fake 4 -->
                     <div class="tiktok-frame snap-center group">
                         <img src="https://placehold.co/300x533/ffeb3b/2c3e50?text=Minha+Colecao" alt="Video Thumbnail" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
@@ -451,20 +404,12 @@
                         </div>
                         <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
                             <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-heart text-white text-xl"></i>
-                                </div>
+                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-white text-xl"></i></div>
                                 <span class="text-white text-xs font-bold">512K</span>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-comment-dots text-white text-xl"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
 
-                     <!-- Vídeo Fake 5 -->
                      <div class="tiktok-frame snap-center group">
                         <img src="https://placehold.co/300x533/3cb371/ffffff?text=Brincando+com+Bloopy" alt="Video Thumbnail" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
@@ -477,9 +422,7 @@
                         </div>
                         <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
                             <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm">
-                                    <i class="fas fa-heart text-white text-xl"></i>
-                                </div>
+                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-white text-xl"></i></div>
                                 <span class="text-white text-xs font-bold">67K</span>
                             </div>
                         </div>
@@ -506,13 +449,10 @@
                 <p class="text-xl font-bold text-gray-600">Encontre o Dumpling Escondido!</p>
             </div>
 
-            <!-- Grid de Cores Baseado na arte da caixa -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 relative">
                 
-                <!-- Enfeite de background -->
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-1/2 bg-white rounded-[3rem] shadow-sm z-0"></div>
 
-                <!-- Cor 1 (Amarelo) -->
                 <div class="relative z-10 flex flex-col items-center group cursor-pointer">
                     <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-bloopy-yellow shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
                         <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>
@@ -520,7 +460,6 @@
                     <div class="mt-4 bg-white px-4 py-1 rounded-full shadow text-sm font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">Raio de Sol</div>
                 </div>
 
-                <!-- Cor 2 (Rosa/Vermelho) -->
                 <div class="relative z-10 flex flex-col items-center group cursor-pointer mt-8">
                     <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-pink-400 shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
                         <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>
@@ -528,7 +467,6 @@
                     <div class="mt-4 bg-white px-4 py-1 rounded-full shadow text-sm font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">Morango</div>
                 </div>
 
-                <!-- Cor 3 (Azul claro) -->
                 <div class="relative z-10 flex flex-col items-center group cursor-pointer">
                     <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-blue-300 shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
                         <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>
@@ -536,7 +474,6 @@
                     <div class="mt-4 bg-white px-4 py-1 rounded-full shadow text-sm font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">Céu Azul</div>
                 </div>
 
-                <!-- Cor 4 (Roxo) -->
                 <div class="relative z-10 flex flex-col items-center group cursor-pointer mt-8">
                     <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-bloopy-purple shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
                         <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>
@@ -544,7 +481,6 @@
                     <div class="mt-4 bg-white px-4 py-1 rounded-full shadow text-sm font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">Uva Doce</div>
                 </div>
 
-                <!-- Cor 5 (Multicolor/Raro) -->
                 <div class="relative z-10 flex flex-col items-center group cursor-pointer">
                     <div class="absolute -top-3 -right-3 text-2xl animate-bounce">✨</div>
                     <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-tr from-pink-500 via-purple-500 to-blue-500 shadow-lg flex items-center justify-center border-4 border-bloopy-yellow transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
@@ -553,7 +489,6 @@
                     <div class="mt-4 bg-bloopy-yellow px-4 py-1 rounded-full shadow text-sm font-bold text-bloopy-dark opacity-0 group-hover:opacity-100 transition-opacity border border-white">Galáxia (RARO!)</div>
                 </div>
 
-                <!-- Cor 6 (Verde) -->
                 <div class="relative z-10 flex flex-col items-center group cursor-pointer mt-8">
                     <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-bloopy-green shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
                         <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>

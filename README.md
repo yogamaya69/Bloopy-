@@ -54,22 +54,13 @@
     </script>
     
     <style>
-        /* Reset para forçar largura total e anular temas do GitHub Pages */
+        /* Correção da largura: usa 100% e evita scroll horizontal */
         html, body {
-            width: 100% !important;
-            max-width: 100vw !important;
-            overflow-x: hidden !important;
-            margin: 0 !important;
-            padding: 0 !important;
+            width: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
             background-color: #ffffff; /* Fundo limpo, sem bolhas */
-        }
-
-        /* Anula containers padrões do GitHub Pages */
-        .wrapper, .container, .main-content {
-            max-width: 100% !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            width: 100% !important;
         }
 
         .hide-scrollbar::-webkit-scrollbar {
@@ -116,12 +107,6 @@
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
-
-        section {
-            width: 100vw !important;
-            max-width: 100vw !important;
-            overflow-x: hidden;
-        }
     </style>
 </head>
 
@@ -167,7 +152,7 @@
     </nav>
 
     <!-- Seção Hero -->
-    <section id="home" class="relative pt-32 pb-40 md:pt-40 md:pb-48 overflow-hidden bg-bloopy-blue w-full min-w-0">
+    <section id="home" class="relative pt-32 pb-40 md:pt-40 md:pb-48 overflow-hidden bg-bloopy-blue w-full">
         <!-- Elementos de fundo decorativos -->
         <div class="absolute top-20 left-10 w-32 h-32 bg-bloopy-pink rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
         <div class="absolute bottom-40 right-10 w-48 h-48 bg-bloopy-yellow rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
@@ -553,8 +538,8 @@
     <footer class="bg-bloopy-dark text-white py-10">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
-                <!-- Logo no Rodapé (modificado para parecer um adesivo pro fundo escuro) -->
-                <img src="logo.svg" alt="Bloopy" class="h-12 w-auto mb-4 mx-auto md:mx-0 bg-white px-3 py-1 rounded-xl shadow-sm" onerror="this.onerror=null; this.src='https://placehold.co/150x50/transparent/ffeb3b?text=Bloopy&font=Montserrat'">
+                <!-- Logo no Rodapé (fundo branco removido) -->
+                <img src="logo.svg" alt="Bloopy" class="h-16 w-auto mb-4 mx-auto md:mx-0" onerror="this.onerror=null; this.src='https://placehold.co/150x50/transparent/ffeb3b?text=Bloopy&font=Montserrat'">
                 <p class="text-gray-400 font-bold mb-4">Fun Squishy. Fabricando sorrisos e diversão misteriosa.</p>
                 <div class="flex space-x-4 justify-center md:justify-start">
                     <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-bloopy-yellow hover:text-bloopy-dark transition-colors"><i class="fab fa-instagram"></i></a>

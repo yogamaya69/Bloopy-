@@ -122,7 +122,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <span class="font-display text-3xl text-white text-shadow-sm tracking-wider" style="-webkit-text-stroke: 1px #2c3e50;">Bloopy</span>
+                    <!-- Logo na barra de navegação -->
+                    <img src="logo.svg" alt="Bloopy" class="h-10 w-auto drop-shadow-md" onerror="this.onerror=null; this.src='https://placehold.co/120x40/transparent/ffffff?text=Bloopy&font=Montserrat'">
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="#home" class="text-white font-bold text-lg hover:text-bloopy-yellow transition-colors drop-shadow-md">Home</a>
@@ -499,7 +500,8 @@
     <section id="colecione" class="py-20 bg-[#e0f7fa]">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16">
-                <img src="https://placehold.co/200x80/transparent/2c3e50?text=Bloopy&font=Montserrat" class="mx-auto h-16 object-contain mb-2" alt="Bloopy Logo">
+                <!-- Logo na seção Colecione -->
+                <img src="logo.svg" alt="Bloopy Logo" class="mx-auto h-16 object-contain mb-2 drop-shadow-md" onerror="this.onerror=null; this.src='https://placehold.co/200x80/transparent/2c3e50?text=Bloopy&font=Montserrat'">
                 <h2 class="font-display text-4xl md:text-5xl text-bloopy-dark mb-2">Colecione Todos!</h2>
                 <p class="text-xl font-bold text-gray-600">Encontre o Dumpling Escondido!</p>
             </div>
@@ -606,7 +608,8 @@
     <footer class="bg-bloopy-dark text-white py-10">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
-                <h3 class="font-display text-3xl mb-4 text-bloopy-yellow">Bloopy</h3>
+                <!-- Logo no Rodapé -->
+                <img src="logo.svg" alt="Bloopy" class="h-12 w-auto mb-4 mx-auto md:mx-0 drop-shadow-md" onerror="this.onerror=null; this.src='https://placehold.co/150x50/transparent/ffeb3b?text=Bloopy&font=Montserrat'">
                 <p class="text-gray-400 font-bold mb-4">Fun Squishy. Fabricando sorrisos e diversão misteriosa.</p>
                 <div class="flex space-x-4 justify-center md:justify-start">
                     <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-bloopy-yellow hover:text-bloopy-dark transition-colors"><i class="fab fa-instagram"></i></a>

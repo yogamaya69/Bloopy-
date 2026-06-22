@@ -1,649 +1,197 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloopy - Mystery Dumpling</title>
-    <!-- Tailwind CSS para estilização rápida -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts para tipografia divertida -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome para ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+import React from 'react';
+import { Instagram, Youtube, Music2, Menu } from 'lucide-react';
+
+const DumplingSVG = ({ color1, color2, scale = 1, isMain = false }) => (
+  <svg 
+    viewBox="0 0 100 100" 
+    className={`w-full h-full ${isMain ? 'drop-shadow-[0_0_40px_rgba(255,255,255,0.7)] animate-bounce-slow' : 'drop-shadow-lg'}`}
+    style={{ transform: `scale(${scale})` }}
+  >
+    <defs>
+      <linearGradient id={`grad-${color1}`} x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor={color1} />
+        <stop offset="100%" stopColor={color2} />
+      </linearGradient>
+      {isMain && (
+        <radialGradient id="sparkle" cx="50%" cy="30%" r="50%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+        </radialGradient>
+      )}
+    </defs>
+
+    {/* Corpo do Dumpling */}
+    <path 
+      d="M 15 75 C 15 35, 30 15, 50 15 C 70 15, 85 35, 85 75 C 85 95, 70 98, 50 98 C 30 98, 15 95, 15 75 Z" 
+      fill={`url(#grad-${color1})`} 
+    />
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bloopy: {
-                            blue: '#48d1cc',    /* Azul principal da caixa */
-                            purple: '#9370db',  /* Roxo do topo */
-                            green: '#3cb371',   /* Verde do topo */
-                            yellow: '#ffeb3b',  /* Amarelo vibrante */
-                            pink: '#ffb6c1',    /* Rosa do dumpling base */
-                            dark: '#2c3e50',    /* Cor de texto escura */
-                            orange: '#ff9800'   /* Laranja para detalhes */
-                        }
-                    },
-                    fontFamily: {
-                        display: ['"Fredoka One"', 'cursive'],
-                        body: ['"Nunito"', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'gradient-bloop': 'linear-gradient(135deg, #48d1cc 0%, #9370db 100%)',
-                    },
-                    animation: {
-                        'bounce-slow': 'bounce 3s infinite',
-                        'wiggle': 'wiggle 2s ease-in-out infinite',
-                        'float': 'float 4s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        wiggle: {
-                            '0%, 100%': { transform: 'rotate(-3deg)' },
-                            '50%': { transform: 'rotate(3deg)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    {isMain && (
+       <path 
+        d="M 15 75 C 15 35, 30 15, 50 15 C 70 15, 85 35, 85 75 C 85 95, 70 98, 50 98 C 30 98, 15 95, 15 75 Z" 
+        fill="url(#sparkle)" 
+      />
+    )}
+
+    {/* Dobrinhas (Folds) no topo */}
+    <path d="M 40 18 Q 50 10 60 18" stroke="rgba(255,255,255,0.4)" strokeWidth="3" fill="none" strokeLinecap="round" />
+    <path d="M 30 25 Q 50 15 70 25" stroke="rgba(255,255,255,0.3)" strokeWidth="2" fill="none" strokeLinecap="round" />
+
+    {/* Rosto Kawaii */}
+    <circle cx="38" cy="60" r="4" fill="#1a1a1a" />
+    <circle cx="62" cy="60" r="4" fill="#1a1a1a" />
     
-    <style>
-        /* Correção da largura: usa 100% e evita scroll horizontal */
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff; /* Fundo limpo, sem bolhas */
-        }
+    {/* Brilho nos olhos */}
+    <circle cx="37" cy="58" r="1.5" fill="#ffffff" />
+    <circle cx="61" cy="58" r="1.5" fill="#ffffff" />
 
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+    {/* Sorriso */}
+    <path d="M 46 65 Q 50 72 54 65" stroke="#1a1a1a" strokeWidth="3" fill="none" strokeLinecap="round" />
+    
+    {/* Bochechas */}
+    <ellipse cx="28" cy="65" rx="5" ry="3" fill="#ff99cc" opacity="0.6" />
+    <ellipse cx="72" cy="65" rx="5" ry="3" fill="#ff99cc" opacity="0.6" />
+  </svg>
+);
 
-        .blob-shape {
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            transition: all 0.5s ease;
-        }
+const SteamerSVG = () => (
+  <svg viewBox="0 0 200 100" className="w-full h-full drop-shadow-xl z-20 relative mt-[-20px]">
+    {/* Borda superior traseira */}
+    <ellipse cx="100" cy="30" rx="80" ry="15" fill="#e6c28c" />
+    {/* Interior escuro */}
+    <ellipse cx="100" cy="30" rx="72" ry="12" fill="#c49b5e" />
+    
+    {/* Corpo do cesto */}
+    <path d="M 20 30 L 25 75 Q 100 95 175 75 L 180 30 Z" fill="#ebd2a9" />
+    
+    {/* Linhas de textura do bambu */}
+    <path d="M 40 35 L 45 78 M 60 38 L 65 83 M 80 40 L 82 86 M 100 41 L 100 88 M 120 40 L 118 86 M 140 38 L 135 83 M 160 35 L 155 78" stroke="#d4b07a" strokeWidth="2" fill="none" />
+    
+    {/* Borda inferior */}
+    <path d="M 25 75 Q 100 95 175 75 L 173 85 Q 100 105 27 85 Z" fill="#d4b07a" />
+    
+    {/* Logo RMS na cesta */}
+    <text x="100" y="65" fontSize="24" fontWeight="900" textAnchor="middle" fill="#ff3366" className="drop-shadow-sm">
+      RMS
+    </text>
+    <text x="100" y="65" fontSize="24" fontWeight="900" textAnchor="middle" fill="none" stroke="#1a1a1a" strokeWidth="1">
+      RMS
+    </text>
+  </svg>
+);
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-[#1a0b3b] p-2 md:p-6 font-sans text-white overflow-hidden flex items-center justify-center">
+      
+      {/* Container Principal do Banner */}
+      <div className="w-full max-w-7xl bg-gradient-to-br from-[#2f1385] via-[#6525c9] to-[#9d36d4] rounded-2xl md:rounded-[2rem] shadow-2xl relative overflow-hidden flex flex-col min-h-[90vh]">
         
-        .blob-shape:hover {
-            border-radius: 50%;
-            transform: scale(1.05);
-        }
+        {/* Estilos para animações exclusivas */}
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes spin-slow {
+            100% { transform: rotate(360deg); }
+          }
+          @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+          }
+          .animate-spin-slow {
+            animation: spin-slow 40s linear infinite;
+          }
+          .animate-bounce-slow {
+            animation: bounce-slow 4s ease-in-out infinite;
+          }
+          .sunburst {
+            background: repeating-conic-gradient(
+              from 0deg,
+              transparent 0deg,
+              transparent 10deg,
+              rgba(255, 255, 255, 0.15) 10deg,
+              rgba(255, 255, 255, 0.15) 20deg
+            );
+          }
+        `}} />
 
-        .text-shadow-sm {
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
-        }
-        .text-shadow-md {
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.2), -1px -1px 0px #fff;
-        }
-        .text-outline {
-            -webkit-text-stroke: 2px white;
-        }
+        {/* Efeito de Raios de Sol ao Fundo (Sunburst) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] sunburst animate-spin-slow pointer-events-none opacity-60"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-transparent via-[#6525c9]/30 to-[#2f1385]/80 pointer-events-none"></div>
 
-        .tiktok-frame {
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            position: relative;
-            background: #000;
-            aspect-ratio: 9/16;
-            width: 280px;
-            flex-shrink: 0;
-            scroll-snap-align: center;
-        }
-        
-        .carousel-container {
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-    </style>
-</head>
-
-<body class="font-body text-bloopy-dark antialiased">
-
-    <!-- Navegação -->
-    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-2" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <!-- Logo na barra de navegação -->
-                    <img src="logo.svg" alt="Bloopy" class="h-10 w-auto mix-blend-multiply" onerror="this.onerror=null; this.src='https://placehold.co/120x40/transparent/ffffff?text=Bloopy&font=Montserrat'">
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-white font-bold text-lg hover:text-bloopy-yellow transition-colors drop-shadow-md">Home</a>
-                    <a href="#sobre" class="text-white font-bold text-lg hover:text-bloopy-yellow transition-colors drop-shadow-md">O que é?</a>
-                    <a href="#colecione" class="text-white font-bold text-lg hover:text-bloopy-yellow transition-colors drop-shadow-md">Colecione</a>
-                    <a href="#viral" class="text-white font-bold text-lg hover:text-bloopy-yellow transition-colors drop-shadow-md">Vídeos Virais</a>
-                </div>
-                <div class="hidden md:flex">
-                    <a href="#comprar" class="bg-bloopy-yellow text-bloopy-dark font-display py-2 px-6 rounded-full hover:bg-white hover:text-bloopy-purple transition-all transform hover:scale-105 shadow-lg border-2 border-white">
-                        Comprar Agora!
-                    </a>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-white hover:text-bloopy-yellow focus:outline-none">
-                        <i class="fas fa-bars text-2xl drop-shadow-md"></i>
-                    </button>
-                </div>
+        {/* Header / Navegação */}
+        <header className="relative z-30 flex items-center justify-between bg-[#1f0a59] mx-4 mt-4 px-6 py-4 rounded-xl shadow-lg">
+          {/* Logo Marca */}
+          <div className="flex items-center space-x-4">
+            
+            <img 
+              src="logo.svg" 
+              alt="Crazy Fun from RMS" 
+              className="h-16 md:h-20 w-auto transform -rotate-3 hover:rotate-0 transition-transform cursor-pointer drop-shadow-lg"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'flex';
+              }}
+            />
+            {/* Placeholder caso o SVG ainda não exista */}
+            <div className="hidden bg-purple-900/50 border border-dashed border-white/30 p-3 rounded-lg transform -rotate-3 items-center justify-center">
+               <span className="font-mono text-pink-300 text-xs font-bold">logo.svg</span>
             </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-bloopy-blue bg-opacity-95 shadow-lg">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="#home" class="block px-3 py-2 text-white font-bold hover:bg-bloopy-purple rounded-md">Home</a>
-                <a href="#sobre" class="block px-3 py-2 text-white font-bold hover:bg-bloopy-purple rounded-md">O que é?</a>
-                <a href="#colecione" class="block px-3 py-2 text-white font-bold hover:bg-bloopy-purple rounded-md">Colecione</a>
-                <a href="#viral" class="block px-3 py-2 text-white font-bold hover:bg-bloopy-purple rounded-md">Vídeos Virais</a>
-                <a href="#comprar" class="block px-3 py-2 text-bloopy-yellow font-display text-xl hover:bg-bloopy-purple rounded-md">Comprar Agora!</a>
+
+            <div className="hidden lg:block border-l border-purple-400/30 pl-4">
+              <p className="text-pink-300 font-bold text-xs uppercase tracking-widest">Super Tendência.</p>
+              <p className="text-white font-bold text-xs uppercase tracking-widest">Absurdamente Viral.</p>
             </div>
-        </div>
-    </nav>
+          </div>
 
-    <!-- Seção Hero -->
-    <section id="home" class="relative pt-32 pb-40 md:pt-40 md:pb-48 overflow-hidden bg-bloopy-blue w-full">
-        <!-- Elementos de fundo decorativos -->
-        <div class="absolute top-20 left-10 w-32 h-32 bg-bloopy-pink rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
-        <div class="absolute bottom-40 right-10 w-48 h-48 bg-bloopy-yellow rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
-        <div class="absolute top-1/2 right-1/4 w-40 h-40 bg-bloopy-purple rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 1s;"></div>
-        <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-bloopy-green rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 3s;"></div>
-
-        <!-- Container principal -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-10">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-                
-                <!-- Texto Hero -->
-                <div class="lg:w-1/2 text-center lg:text-left w-full">
-                    <div class="inline-block bg-bloopy-yellow text-bloopy-dark font-bold px-4 py-1 rounded-full mb-4 shadow-md transform -rotate-2">
-                        <i class="fas fa-star text-orange-500 mr-2"></i>Fun Squishy!
-                    </div>
-                    <h1 class="font-display text-5xl md:text-6xl lg:text-7xl text-white text-shadow-md mb-2 tracking-wide text-outline leading-tight">
-                        MYSTERY
-                    </h1>
-                    <h1 class="font-display text-4xl md:text-5xl text-bloopy-yellow text-shadow-md mb-6 transform -rotate-3 inline-block">
-                        DUMPLING
-                    </h1>
-                    
-                    <p class="text-xl text-white font-bold mb-8 drop-shadow-lg max-w-lg mx-auto lg:mx-0">
-                        Qual será a sua cor?? Aperte, estique e descubra o squishy mais divertido do momento!
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#comprar" class="bg-white text-bloopy-purple font-display text-lg py-3 px-8 rounded-full shadow-xl hover:scale-105 hover:bg-bloopy-yellow hover:text-bloopy-dark transition-all flex items-center justify-center group border-4 border-bloopy-purple">
-                            <i class="fas fa-shopping-cart mr-2 group-hover:animate-bounce"></i> Garantir o Meu
-                        </a>
-                        <a href="#viral" class="bg-transparent border-4 border-white text-white font-display text-lg py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-bloopy-blue transition-all flex items-center justify-center">
-                            <i class="fas fa-play mr-2"></i> Ver Vídeos
-                        </a>
-                    </div>
-                    
-                    <div class="mt-8 flex items-center justify-center lg:justify-start space-x-2">
-                        <span class="bg-bloopy-green text-white font-bold px-3 py-1 rounded-full text-sm shadow-sm border-2 border-white">+3 ANOS</span>
-                        <span class="text-white font-bold text-sm drop-shadow-md">Contém 12 Unidades</span>
-                    </div>
-                </div>
-
-                <!-- Imagem/Gráfico Hero -->
-                <div class="lg:w-1/2 relative flex justify-center mt-12 lg:mt-0 w-full">
-                    <!-- Simulação do Dumpling Principal -->
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 animate-wiggle z-20">
-                        <!-- O mix-blend-multiply foi removido e um drop-shadow foi adicionado. 
-                             Lembre-se de usar uma imagem 01.png com fundo transparente! -->
-                        <img src="01.png" alt="Bloopy Mystery Dumpling" onerror="this.onerror=null; this.src='https://placehold.co/400x400/transparent/ff9800?text=01.png+não+encontrada'" class="w-full h-full object-contain z-20 relative drop-shadow-2xl">
-                        
-                        <!-- Ponto de interrogação flutuante -->
-                        <div class="absolute -top-5 -right-5 font-display text-5xl text-white text-shadow-md animate-bounce-slow transform rotate-12 z-30">
-                            ?!
-                        </div>
-                    </div>
-                    
-                    <!-- Dumplings menores ao redor -->
-                    <div class="absolute bottom-5 -left-5 w-20 h-20 bg-bloopy-yellow rounded-full shadow-lg border-4 border-white animate-float z-10 flex items-center justify-center">
-                         <div class="flex space-x-2 mb-1"><div class="w-2 h-2 bg-gray-800 rounded-full"></div><div class="w-2 h-2 bg-gray-800 rounded-full"></div></div>
-                    </div>
-                    <div class="absolute top-10 -right-5 w-16 h-16 bg-bloopy-green rounded-full shadow-lg border-4 border-white animate-float z-10 flex items-center justify-center" style="animation-delay: 1.5s;">
-                         <div class="flex space-x-1.5 mb-1"><div class="w-1.5 h-1.5 bg-gray-800 rounded-full"></div><div class="w-1.5 h-1.5 bg-gray-800 rounded-full"></div></div>
-                    </div>
-                    <div class="absolute -bottom-10 right-10 w-24 h-24 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full shadow-lg border-4 border-white animate-float z-30 flex items-center justify-center" style="animation-delay: 0.5s;">
-                         <div class="flex space-x-2 mb-1"><div class="w-2 h-2 bg-white rounded-full"></div><div class="w-2 h-2 bg-white rounded-full"></div></div>
-                    </div>
-                </div>
+          {/* Links e Sociais */}
+          <div className="flex items-center space-x-6">
+            <nav className="hidden md:flex space-x-6 text-sm font-bold tracking-wide">
+              <a href="#" className="text-white hover:text-pink-400 transition-colors border-b-2 border-pink-500 pb-1">INÍCIO</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">OS DUMPLINGS</a>
+              <a href="#" className="text-gray-300 hover:text-white transition-colors">NOVIDADES</a>
+            </nav>
+            <div className="flex space-x-4 text-pink-400">
+              <a href="#" className="hover:text-white hover:scale-110 transition-all"><Music2 size={20} /></a>
+              <a href="#" className="hover:text-white hover:scale-110 transition-all"><Instagram size={20} /></a>
+              <a href="#" className="hover:text-white hover:scale-110 transition-all"><Youtube size={20} /></a>
             </div>
-        </div>
-        
-        <!-- Onda separadora -->
-        <div class="absolute bottom-0 left-0 w-full leading-none z-20 transform translate-y-1">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 md:h-32 text-white fill-current block">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,123.63,200.2,112.3Z" opacity=".25"></path>
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.15,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".5"></path>
-                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"></path>
+            <button className="md:hidden text-white">
+              <Menu size={24} />
+            </button>
+          </div>
+        </header>
+
+        {/* Conteúdo Principal (Espaço do Banner Completo) */}
+        <main className="relative z-20 flex-1 flex flex-col items-center justify-center p-6 md:p-12 w-full min-h-[600px]">
+          
+          {/* Tag da Imagem puxando o arquivo do repositório */}
+          <img 
+            src="banner01.png" 
+            alt="Banner Mystery Dumplings Completo" 
+            className="w-full h-auto max-h-[750px] object-contain relative z-10 drop-shadow-2xl"
+            onError={(e) => {
+              // Fallback visual para mostrar o espaço vazio
+              e.target.style.display = 'none';
+              e.target.nextElementSibling.style.display = 'flex';
+            }}
+          />
+          
+          {/* Placeholder Visual (Aparece apenas se a imagem falhar ao carregar/não for encontrada) */}
+          <div className="hidden absolute inset-6 md:inset-12 flex-col items-center justify-center border-4 border-dashed border-white/20 rounded-3xl bg-white/5 backdrop-blur-sm text-white/80 text-center p-8 transition-all hover:bg-white/10">
+            <svg className="w-20 h-20 mb-6 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
             </svg>
-        </div>
-    </section>
+            <h2 className="font-black text-3xl md:text-4xl mb-4 tracking-tight drop-shadow-md">Área do Banner</h2>
+            <p className="text-lg md:text-xl font-medium max-w-lg mb-6 drop-shadow-sm">
+              Sua arte do Photoshop vai entrar aqui! Salve a imagem final no Github/repositório e nomeie o arquivo como:
+            </p>
+            <p className="font-mono bg-purple-900/50 border border-purple-400/30 shadow-inner px-8 py-3 rounded-xl text-pink-300 text-2xl font-bold">
+              banner01.png
+            </p>
+          </div>
 
-    <section id="sobre" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="font-display text-4xl md:text-5xl text-bloopy-purple mb-4">Aperte e Surpreenda-se!</h2>
-                <div class="w-24 h-2 bg-bloopy-yellow mx-auto rounded-full"></div>
-            </div>
+        </main>
 
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="bg-blue-50 rounded-3xl p-8 text-center shadow-lg transform transition duration-300 hover:-translate-y-2 border-4 border-bloopy-blue blob-shape">
-                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                        <i class="fas fa-question text-4xl text-bloopy-blue"></i>
-                    </div>
-                    <h3 class="font-display text-2xl mb-3 text-bloopy-dark">Cores Misteriosas</h3>
-                    <p class="font-bold text-gray-600">Por fora parece um Dumpling fofinho de massa... mas qual será a cor dele por dentro? É uma surpresa!</p>
-                </div>
-
-                <div class="bg-pink-50 rounded-3xl p-8 text-center shadow-lg transform transition duration-300 hover:-translate-y-2 border-4 border-bloopy-pink blob-shape" style="animation-delay: 0.2s;">
-                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                        <i class="fas fa-hand-rock text-4xl text-bloopy-pink"></i>
-                    </div>
-                    <h3 class="font-display text-2xl mb-3 text-bloopy-dark">Super Squishy</h3>
-                    <p class="font-bold text-gray-600">Aperte muito! Ele é super macio, estica e volta ao normal. A sensação tátil é incrível e relaxante.</p>
-                </div>
-
-                <div class="bg-yellow-50 rounded-3xl p-8 text-center shadow-lg transform transition duration-300 hover:-translate-y-2 border-4 border-bloopy-yellow blob-shape" style="animation-delay: 0.4s;">
-                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                        <i class="fas fa-users text-4xl text-bloopy-orange"></i>
-                    </div>
-                    <h3 class="font-display text-2xl mb-3 text-bloopy-dark">Colecione Todos</h3>
-                    <p class="font-bold text-gray-600">São várias cores para descobrir! Troque com os amigos e tente achar o raro dumpling dourado!</p>
-                </div>
-            </div>
-            
-            <div class="mt-20 flex flex-col md:flex-row justify-center items-center gap-8 bg-gray-50 p-8 rounded-[3rem] shadow-inner">
-                <div class="text-center md:text-left md:w-1/2">
-                    <h3 class="font-display text-3xl text-bloopy-green mb-4">Como funciona?</h3>
-                    <p class="text-lg font-bold text-gray-700 mb-4">A magia acontece quando você aperta! A capa externa macia revela a verdadeira cor do seu Dumpling.</p>
-                    <ul class="space-y-3 font-bold text-gray-600">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-bloopy-green mr-2"></i> 1. Abra a caixinha surpresa</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-bloopy-green mr-2"></i> 2. Pegue seu Dumpling macio</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-bloopy-green mr-2"></i> 3. <strong>APERTE COM VONTADE!</strong></li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-bloopy-green mr-2"></i> 4. Descubra a cor que vai estourar!</li>
-                    </ul>
-                </div>
-                
-                <div class="flex gap-4">
-                    <div class="relative w-32 h-32 bg-white rounded-full shadow-lg border-4 border-bloopy-yellow flex items-center justify-center">
-                        <div class="text-center">
-                            <i class="far fa-smile text-3xl text-pink-300 mb-1"></i>
-                            <p class="text-xs font-bold">Antes</p>
-                        </div>
-                    </div>
-                    <i class="fas fa-arrow-right text-3xl text-bloopy-blue self-center animate-pulse"></i>
-                    <div class="relative w-32 h-32 bg-white rounded-full shadow-lg border-4 border-bloopy-yellow flex items-center justify-center overflow-hidden">
-                        <div class="absolute bg-purple-400 w-20 h-20 rounded-full scale-110"></div>
-                        <div class="absolute top-0 bottom-0 left-2 w-4 bg-gray-200 opacity-50 transform -skew-x-12"></div>
-                        <div class="absolute top-0 bottom-0 right-2 w-4 bg-gray-200 opacity-50 transform skew-x-12"></div>
-                        <p class="text-xs font-bold z-10 text-white bg-black bg-opacity-30 px-2 rounded mt-10">Apertado!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="viral" class="py-20 bg-gradient-to-b from-bloopy-purple to-bloopy-blue overflow-hidden relative">
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20 pointer-events-none">
-            <i class="fas fa-heart text-white text-6xl absolute top-10 left-10 transform -rotate-12"></i>
-            <i class="fas fa-share text-white text-4xl absolute bottom-20 left-1/4 transform rotate-12"></i>
-            <i class="fas fa-play text-white text-8xl absolute top-1/4 right-10 transform rotate-45"></i>
-            <i class="fas fa-fire text-white text-5xl absolute bottom-10 right-1/3"></i>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 relative z-10">
-            <div class="text-center mb-12">
-                <div class="inline-block bg-black text-white font-bold px-4 py-1 rounded-full mb-4 shadow-lg flex items-center justify-center mx-auto w-max">
-                    <i class="fab fa-tiktok mr-2 text-[#ff0050]"></i> #MysteryDumpling
-                </div>
-                <h2 class="font-display text-4xl md:text-6xl text-white text-shadow-md mb-4 text-outline">Febre na Internet!</h2>
-                <p class="text-xl text-white font-bold drop-shadow-md">Veja as reações de quem apertou pela primeira vez!</p>
-            </div>
-
-            <div class="relative">
-                <button id="prevBtn" class="hidden md:flex absolute left-[-20px] top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full items-center justify-center shadow-xl text-bloopy-dark z-20 hover:bg-bloopy-yellow transition-colors border-2 border-gray-200">
-                    <i class="fas fa-chevron-left text-xl"></i>
-                </button>
-                <button id="nextBtn" class="hidden md:flex absolute right-[-20px] top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full items-center justify-center shadow-xl text-bloopy-dark z-20 hover:bg-bloopy-yellow transition-colors border-2 border-gray-200">
-                    <i class="fas fa-chevron-right text-xl"></i>
-                </button>
-
-                <div id="carousel-track" class="carousel-container flex space-x-6 overflow-x-auto py-8 px-4 hide-scrollbar snap-x">
-                    
-                    <div class="tiktok-frame snap-center group">
-                        <img src="https://placehold.co/300x533/ffb6c1/ffffff?text=Unboxing+Bloopy!" alt="Video Thumbnail" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-30">
-                            <i class="fas fa-play-circle text-6xl text-white opacity-80"></i>
-                        </div>
-                        <div class="absolute bottom-4 left-4 right-12 text-white">
-                            <p class="font-bold text-sm">@bloopyfan_oficial</p>
-                            <p class="text-xs mt-1 font-bold">Qual cor vcs acham que é? 😱 <span class="text-bloopy-yellow">#bloopy #mysterydumpling</span></p>
-                        </div>
-                        <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-white text-xl"></i></div>
-                                <span class="text-white text-xs font-bold">124K</span>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-comment-dots text-white text-xl"></i></div>
-                                <span class="text-white text-xs font-bold">1.2K</span>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-share text-white text-xl"></i></div>
-                                <span class="text-white text-xs font-bold">5K</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tiktok-frame snap-center group">
-                        <img src="https://placehold.co/300x533/48d1cc/ffffff?text=Olha+essa+Cor!!" alt="Video Thumbnail" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-30">
-                            <i class="fas fa-play-circle text-6xl text-white opacity-80"></i>
-                        </div>
-                        <div class="absolute bottom-4 left-4 right-12 text-white">
-                            <p class="font-bold text-sm">@toyreviewer</p>
-                            <p class="text-xs mt-1 font-bold">Melhor fidget toy de 2024! 😍 Satisfatório demais. <span class="text-bloopy-yellow">#fidget #asmr</span></p>
-                        </div>
-                        <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-red-500 text-xl"></i></div>
-                                <span class="text-white text-xs font-bold">342K</span>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-comment-dots text-white text-xl"></i></div>
-                                <span class="text-white text-xs font-bold">4.5K</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tiktok-frame snap-center group">
-                        <img src="https://placehold.co/300x533/9370db/ffffff?text=ASMR+Squishy" alt="Video Thumbnail" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-30">
-                            <i class="fas fa-play-circle text-6xl text-white opacity-80"></i>
-                        </div>
-                        <div class="absolute bottom-4 left-4 right-12 text-white">
-                            <p class="font-bold text-sm">@relaxing_times</p>
-                            <p class="text-xs mt-1 font-bold">Achei o ROXO MÍSTICO!! 🔮🔮🔮 <span class="text-bloopy-yellow">#bloopy #raro</span></p>
-                        </div>
-                        <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-white text-xl"></i></div>
-                                <span class="text-white text-xs font-bold">89K</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tiktok-frame snap-center group">
-                        <img src="https://placehold.co/300x533/ffeb3b/2c3e50?text=Minha+Colecao" alt="Video Thumbnail" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-30">
-                            <i class="fas fa-play-circle text-6xl text-white opacity-80"></i>
-                        </div>
-                        <div class="absolute bottom-4 left-4 right-12 text-white">
-                            <p class="font-bold text-sm">@kids_fun_br</p>
-                            <p class="text-xs mt-1 font-bold">Comprei a caixa inteira! Vamos abrir todos! 🎁 <span class="text-bloopy-yellow">#unboxing</span></p>
-                        </div>
-                        <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-white text-xl"></i></div>
-                                <span class="text-white text-xs font-bold">512K</span>
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="tiktok-frame snap-center group">
-                        <img src="https://placehold.co/300x533/3cb371/ffffff?text=Brincando+com+Bloopy" alt="Video Thumbnail" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80"></div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-30">
-                            <i class="fas fa-play-circle text-6xl text-white opacity-80"></i>
-                        </div>
-                        <div class="absolute bottom-4 left-4 right-12 text-white">
-                            <p class="font-bold text-sm">@brincadeiras_legais</p>
-                            <p class="text-xs mt-1 font-bold">Olha como estica! Verde alienígena! 👽💚</p>
-                        </div>
-                        <div class="absolute bottom-4 right-2 flex flex-col space-y-4 items-center">
-                            <div class="text-center">
-                                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-1 backdrop-blur-sm"><i class="fas fa-heart text-white text-xl"></i></div>
-                                <span class="text-white text-xs font-bold">67K</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            
-            <div class="text-center mt-10">
-                <p class="text-white font-bold mb-4">Arraste para o lado para ver mais <i class="fas fa-arrows-alt-h mx-2"></i></p>
-                <a href="#" class="inline-block border-2 border-white text-white font-display px-6 py-2 rounded-full hover:bg-white hover:text-bloopy-blue transition-colors">
-                    Siga a gente no TikTok @bloopy_br
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="colecione" class="py-20 bg-[#e0f7fa]">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <!-- Logo na seção Colecione -->
-                <img src="logo.svg" alt="Bloopy Logo" class="mx-auto h-16 object-contain mb-2 mix-blend-multiply" onerror="this.onerror=null; this.src='https://placehold.co/200x80/transparent/2c3e50?text=Bloopy&font=Montserrat'">
-                <h2 class="font-display text-4xl md:text-5xl text-bloopy-dark mb-2">Colecione Todos!</h2>
-                <p class="text-xl font-bold text-gray-600">Encontre o Dumpling Escondido!</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 relative">
-                
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-1/2 bg-white rounded-[3rem] shadow-sm z-0"></div>
-
-                <div class="relative z-10 flex flex-col items-center group cursor-pointer">
-                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-bloopy-yellow shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
-                        <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>
-                    </div>
-                    <div class="mt-4 bg-white px-4 py-1 rounded-full shadow text-sm font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">Raio de Sol</div>
-                </div>
-
-                <div class="relative z-10 flex flex-col items-center group cursor-pointer mt-8">
-                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-pink-400 shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
-                        <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>
-                    </div>
-                    <div class="mt-4 bg-white px-4 py-1 rounded-full shadow text-sm font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">Morango</div>
-                </div>
-
-                <div class="relative z-10 flex flex-col items-center group cursor-pointer">
-                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-blue-300 shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
-                        <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>
-                    </div>
-                    <div class="mt-4 bg-white px-4 py-1 rounded-full shadow text-sm font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">Céu Azul</div>
-                </div>
-
-                <div class="relative z-10 flex flex-col items-center group cursor-pointer mt-8">
-                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-bloopy-purple shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
-                        <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>
-                    </div>
-                    <div class="mt-4 bg-white px-4 py-1 rounded-full shadow text-sm font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">Uva Doce</div>
-                </div>
-
-                <div class="relative z-10 flex flex-col items-center group cursor-pointer">
-                    <div class="absolute -top-3 -right-3 text-2xl animate-bounce">✨</div>
-                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-tr from-pink-500 via-purple-500 to-blue-500 shadow-lg flex items-center justify-center border-4 border-bloopy-yellow transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
-                        <div class="flex space-x-2"><div class="w-3 h-3 bg-white rounded-full"></div><div class="w-3 h-3 bg-white rounded-full"></div></div>
-                    </div>
-                    <div class="mt-4 bg-bloopy-yellow px-4 py-1 rounded-full shadow text-sm font-bold text-bloopy-dark opacity-0 group-hover:opacity-100 transition-opacity border border-white">Galáxia (RARO!)</div>
-                </div>
-
-                <div class="relative z-10 flex flex-col items-center group cursor-pointer mt-8">
-                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-bloopy-green shadow-lg flex items-center justify-center border-4 border-white transform transition-transform group-hover:scale-110 group-hover:-translate-y-2">
-                        <div class="flex space-x-2"><div class="w-3 h-3 bg-gray-800 rounded-full"></div><div class="w-3 h-3 bg-gray-800 rounded-full"></div></div>
-                    </div>
-                    <div class="mt-4 bg-white px-4 py-1 rounded-full shadow text-sm font-bold text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity">Maçã Verde</div>
-                </div>
-            </div>
-
-            <div class="mt-16 bg-white p-8 rounded-3xl shadow-md border-2 border-blue-100 flex flex-col md:flex-row items-center justify-between">
-                <div class="flex items-center mb-6 md:mb-0">
-                    <div class="bg-blue-100 p-4 rounded-full mr-4">
-                        <i class="fas fa-box-open text-3xl text-bloopy-blue"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-display text-2xl text-bloopy-dark">A Caixa Display</h4>
-                        <p class="font-bold text-gray-600">Contém 12 unidades sortidas.</p>
-                    </div>
-                </div>
-                <a href="#comprar" class="bg-bloopy-green text-white font-display text-xl py-3 px-8 rounded-full shadow-lg hover:scale-105 hover:bg-green-500 transition-all text-center">
-                    Comprar Caixa Fechada
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção de Compra / Call to Action Final -->
-    <section id="comprar" class="py-24 bg-bloopy-yellow relative overflow-hidden">
-        <!-- SVG Wave Top -->
-        <div class="absolute top-0 w-full leading-none z-10 rotate-180">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-12 text-[#e0f7fa] fill-current">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,123.63,200.2,112.3Z"></path>
-            </svg>
-        </div>
-
-        <div class="max-w-4xl mx-auto px-4 relative z-20 text-center">
-            <h2 class="font-display text-5xl md:text-6xl text-bloopy-dark mb-6 text-shadow-sm">Qual será a sua cor?</h2>
-            <p class="text-2xl font-bold text-gray-800 mb-10">Não fique de fora dessa febre. Garanta o seu Mystery Dumpling hoje mesmo!</p>
-            
-            <div class="flex flex-col md:flex-row justify-center gap-6">
-                <button onclick="showMessage('Adicionado ao carrinho!')" class="bg-bloopy-purple text-white font-display text-2xl py-4 px-10 rounded-full shadow-xl hover:scale-105 transition-transform border-4 border-white flex items-center justify-center">
-                    <i class="fas fa-shopping-bag mr-3"></i> Comprar 1 Unidade
-                </button>
-                <button onclick="showMessage('Caixa (12 un) adicionada ao carrinho!')" class="bg-white text-bloopy-dark font-display text-2xl py-4 px-10 rounded-full shadow-xl hover:scale-105 transition-transform border-4 border-bloopy-purple flex items-center justify-center">
-                    <i class="fas fa-box mr-3"></i> Levar a Caixa (12 un)
-                </button>
-            </div>
-            <p class="mt-6 text-sm font-bold text-gray-700">*Indicado para crianças maiores de 3 anos (+3)</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-bloopy-dark text-white py-10">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-            <div>
-                <!-- Logo no Rodapé -->
-                <img src="logo.svg" alt="Bloopy" class="h-16 w-auto mb-4 mx-auto md:mx-0" onerror="this.onerror=null; this.src='https://placehold.co/150x50/transparent/ffeb3b?text=Bloopy&font=Montserrat'">
-                <p class="text-gray-400 font-bold mb-4">Fun Squishy. Fabricando sorrisos e diversão misteriosa.</p>
-                <div class="flex space-x-4 justify-center md:justify-start">
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-bloopy-yellow hover:text-bloopy-dark transition-colors"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-bloopy-yellow hover:text-bloopy-dark transition-colors"><i class="fab fa-tiktok"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-bloopy-yellow hover:text-bloopy-dark transition-colors"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold text-xl mb-4 text-white">Links Rápidos</h4>
-                <ul class="space-y-2 text-gray-400 font-bold">
-                    <li><a href="#home" class="hover:text-bloopy-yellow">Home</a></li>
-                    <li><a href="#sobre" class="hover:text-bloopy-yellow">Como Funciona</a></li>
-                    <li><a href="#colecione" class="hover:text-bloopy-yellow">Coleção</a></li>
-                    <li><a href="#" class="hover:text-bloopy-yellow">Atendimento ao Cliente</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold text-xl mb-4 text-white">Segurança</h4>
-                <div class="flex items-center justify-center md:justify-start space-x-4 mb-4">
-                    <div class="w-12 h-12 bg-white rounded flex items-center justify-center text-bloopy-dark font-bold border-2 border-red-500">
-                        <span class="text-red-500 line-through mr-1 text-sm">0-3</span>
-                    </div>
-                    <p class="text-gray-400 text-sm font-bold text-left">
-                        ATENÇÃO! Não recomendável para crianças menores de 3 anos por conter partes pequenas que podem ser engolidas.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="text-center text-gray-500 text-sm mt-10 font-bold border-t border-gray-700 pt-6">
-            &copy; 2024 Bloopy Fun Squishy. Todos os direitos reservados.
-        </div>
-    </footer>
-
-    <!-- Caixa de Mensagem Customizada -->
-    <div id="messageBox" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 bg-white border-l-4 border-bloopy-green rounded shadow-lg p-4 transition-all duration-300 z-50 flex items-center">
-        <i class="fas fa-check-circle text-bloopy-green text-2xl mr-3"></i>
-        <p id="messageText" class="font-bold text-gray-800"></p>
+      </div>
     </div>
-
-    <!-- Scripts -->
-    <script>
-        // Função para mostrar mensagens 
-        function showMessage(text) {
-            const msgBox = document.getElementById('messageBox');
-            const msgText = document.getElementById('messageText');
-            
-            msgText.innerText = text;
-            
-            // Show
-            msgBox.classList.remove('translate-y-20', 'opacity-0');
-            
-            // Hide after 3 seconds
-            setTimeout(() => {
-                msgBox.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        // Lógica do Menu Mobile
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Fechar menu mobile ao clicar num link
-        const mobileLinks = menu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // Efeito de Navbar ao rolar a página
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-bloopy-blue', 'bg-opacity-95', 'shadow-md');
-                nav.classList.remove('py-2');
-            } else {
-                nav.classList.remove('bg-bloopy-blue', 'bg-opacity-95', 'shadow-md');
-                nav.classList.add('py-2');
-            }
-        });
-
-        // Lógica do Carrossel de Vídeos
-        const track = document.getElementById('carousel-track');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        if(track && prevBtn && nextBtn) {
-            // Avança um card (largura do card + gap)
-            const scrollAmount = 300 + 24; 
-
-            nextBtn.addEventListener('click', () => {
-                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            });
-
-            prevBtn.addEventListener('click', () => {
-                track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            });
-        }
-    </script>
-</body>
-</html>
+  );
+}
